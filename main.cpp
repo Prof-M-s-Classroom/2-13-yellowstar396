@@ -80,12 +80,16 @@ public:
             cout<<"index out of range"<<endl;
             throw "index out of bounds";
         }
+        if (index==0) {
+            delfirst();
+            return;
+        }
         Node<T>* temp = head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index-1; i++) {
             temp = temp->next;
         }
-        Node<T>* temp2 = temp;
-        temp = temp->next;
+        Node<T>* temp2 = temp->next;
+        temp->next = temp->next->next;
         delete temp2;
         length--;
     }
@@ -179,8 +183,10 @@ int main() {
     ll->print();
     ll->delfirst();
     ll->print();
-    ll->prepend(s3);
+    ll->insert(1, s3);
     ll->print();
     ll->reverselist();
+    ll->print();
+    ll->deleteNode(1);
     ll->print();
 }
